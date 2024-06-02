@@ -1,0 +1,202 @@
+[
+    {
+      
+      "image": "https://example.com/images/paracetamol.jpg",
+      "medicine_name": "Paracetamol",
+      "category": "Tablet",
+      "company_name": "PharmaCorp",
+      "price_per_unit": 5.00,
+      "description": "Effective for pain relief and reducing fever.",
+      "discount": 10
+    },
+    {
+     
+      "image": "https://example.com/images/amoxicillin.jpg",
+      "medicine_name": "Amoxicillin",
+      "category": "Capsule",
+      "company_name": "HealWell",
+      "price_per_unit": 12.50,
+      "description": "Used to treat a variety of bacterial infections.",
+      "discount": 5
+    },
+    {
+     
+      "image": "https://example.com/images/ibuprofen.jpg",
+      "medicine_name": "Ibuprofen",
+      "category": "Tablet",
+      "company_name": "MediCure",
+      "price_per_unit": 8.00,
+      "description": "Reduces pain, inflammation, and fever.",
+      "discount": 15
+    },
+    {
+    
+      "image": "https://example.com/images/loratadine.jpg",
+      "medicine_name": "Loratadine",
+      "category": "Syrup",
+      "company_name": "AllergyFree",
+      "price_per_unit": 4.50,
+      "description": "Relieves allergy symptoms such as runny nose and sneezing.",
+      "discount": 20
+    },
+    {
+  
+      "image": "https://example.com/images/metformin.jpg",
+      "medicine_name": "Metformin",
+      "category": "Tablet",
+      "company_name": "GlucoCare",
+      "price_per_unit": 9.00,
+      "description": "Helps control blood sugar levels in people with type 2 diabetes.",
+      "discount": 10
+    },
+    {
+    
+      "image": "https://example.com/images/omeprazole.jpg",
+      "medicine_name": "Omeprazole",
+      "category": "Capsule",
+      "company_name": "DigestWell",
+      "price_per_unit": 7.00,
+      "description": "Treats gastroesophageal reflux disease (GERD) and other conditions caused by excess stomach acid.",
+      "discount": 12
+    },
+    {
+      
+      "image": "https://example.com/images/atorvastatin.jpg",
+      "medicine_name": "Atorvastatin",
+      "category": "Tablet",
+      "company_name": "HeartSafe",
+      "price_per_unit": 11.00,
+      "description": "Lowers bad cholesterol and fats, and raises good cholesterol.",
+      "discount": 8
+    },
+    {
+  
+      "image": "https://example.com/images/azithromycin.jpg",
+      "medicine_name": "Azithromycin",
+      "category": "Tablet",
+      "company_name": "InfectiCare",
+      "price_per_unit": 14.00,
+      "description": "Used to treat a wide variety of bacterial infections.",
+      "discount": 7
+    },
+    {
+      
+      "image": "https://example.com/images/levothyroxine.jpg",
+      "medicine_name": "Levothyroxine",
+      "category": "Tablet",
+      "company_name": "ThyroHealth",
+      "price_per_unit": 10.00,
+      "description": "Treats hypothyroidism by replacing thyroid hormone.",
+      "discount": 9
+    },
+    {
+      
+      "image": "https://example.com/images/amlodipine.jpg",
+      "medicine_name": "Amlodipine",
+      "category": "Tablet",
+      "company_name": "CardioLife",
+      "price_per_unit": 6.50,
+      "description": "Relaxes blood vessels so blood can flow more easily.",
+      "discount": 13
+    },
+    {
+   
+      "image": "https://example.com/images/montelukast.jpg",
+      "medicine_name": "Montelukast",
+      "category": "Tablet",
+      "company_name": "RespiraCare",
+      "price_per_unit": 9.50,
+      "description": "Prevents asthma attacks and treats allergies.",
+      "discount": 11
+    },
+    {
+     
+      "image": "https://example.com/images/doxycycline.jpg",
+      "medicine_name": "Doxycycline",
+      "category": "Capsule",
+      "company_name": "AntiBac",
+      "price_per_unit": 13.00,
+      "description": "Treats various bacterial infections and prevents malaria.",
+      "discount": 6
+    },
+    {
+      
+      "image": "https://example.com/images/clopidogrel.jpg",
+      "medicine_name": "Clopidogrel",
+      "category": "Tablet",
+      "company_name": "ThromboSafe",
+      "price_per_unit": 15.00,
+      "description": "Prevents strokes and heart attacks by keeping blood flowing smoothly.",
+      "discount": 4
+    },
+    {
+      
+      "image": "https://example.com/images/sertraline.jpg",
+      "medicine_name": "Sertraline",
+      "category": "Tablet",
+      "company_name": "MentalWell",
+      "price_per_unit": 10.50,
+      "description": "Used to treat depression, anxiety, and other mood disorders.",
+      "discount": 10
+    },
+    {
+      
+      "image": "https://example.com/images/alprazolam.jpg",
+      "medicine_name": "Alprazolam",
+      "category": "Tablet",
+      "company_name": "CalmMind",
+      "price_per_unit": 12.00,
+      "description": "Treats anxiety and panic disorders by affecting the brain and nerves.",
+      "discount": 14
+    },
+    {
+     
+      "image": "https://example.com/images/betamethasone.jpg",
+      "medicine_name": "Betamethasone",
+      "category": "Cream",
+      "company_name": "SkinCare",
+      "price_per_unit": 5.50,
+      "description": "Used to treat a variety of skin conditions (e.g., eczema, dermatitis, allergies, rash).",
+      "discount": 10
+    },
+    {
+      
+      "image": "https://example.com/images/ciprofloxacin_drops.jpg",
+      "medicine_name": "Ciprofloxacin",
+      "category": "Drops",
+      "company_name": "EyeCare",
+      "price_per_unit": 6.00,
+      "description": "Used to treat bacterial infections in the eyes or ears.",
+      "discount": 5
+    },
+    {
+      
+      "image": "https://example.com/images/insulin_injection.jpg",
+      "medicine_name": "Insulin",
+      "category": "Injection",
+      "company_name": "DiabeticsCare",
+      "price_per_unit": 20.00,
+      "description": "Used to improve blood sugar control in people with diabetes mellitus.",
+      "discount": 12
+    },
+    {
+      
+      "image": "https://example.com/images/hydrocortisone_cream.jpg",
+      "medicine_name": "Hydrocortisone",
+      "category": "Cream",
+      "company_name": "DermCare",
+      "price_per_unit": 4.50,
+      "description": "Reduces the swelling, itching, and redness that can occur in a variety of skin conditions.",
+      "discount": 8
+    },
+    {
+      
+      "image": "https://example.com/images/saline_nasal_drops.jpg",
+      "medicine_name": "Saline Nasal Drops",
+      "category": "Drops",
+      "company_name": "NasalCare",
+      "price_per_unit": 3.00,
+      "description": "Relieves nasal congestion and dryness.",
+      "discount": 5
+    }
+  ]
