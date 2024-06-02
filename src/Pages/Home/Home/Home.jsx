@@ -1,7 +1,9 @@
 
 import Banner from "../Banner/Banner";
-import CategoriesSection from "../CategoriesSection/CategoriesSection";
+// import CategoriesSection from "../CategoriesSection/CategoriesSection";
+// import CategoryData from "../CategoryData/CategoryData";
 import UsersQueries from "../UsersQueries/UsersQueries";
+import MainCategoryData from "./MainCategoryData/MainCategoryData";
 
 
 const Home = () => {
@@ -9,8 +11,10 @@ const Home = () => {
     return (
         <div>
             <Banner></Banner>
-            <CategoriesSection></CategoriesSection>
+            {/* <CategoriesSection></CategoriesSection> */}
             <UsersQueries></UsersQueries>
+            <MainCategoryData></MainCategoryData>
+            {/* <CategoryData></CategoryData> */}
         </div>
     );
 };

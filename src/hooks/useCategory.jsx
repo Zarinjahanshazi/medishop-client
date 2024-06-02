@@ -3,19 +3,20 @@ import useAxiosPublic from "./useAxiosPublic";
 // import { useParams } from "react-router-dom";
 
 
-const useCategory = () => {
+const useCategory = (category) => {
     const axiosPublic = useAxiosPublic();
+
     // const category = useParams();
     
-    const { data:category = [], isPending:loading, refetch} = useQuery({
+    const { data:categories = [], isPending:loading, refetch} = useQuery({
         queryKey: ['category'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/categories?${category}`);
+            const res = await axiosPublic.get(`/categories/${category}`);
             return res.data;
 
         }
     })
-    return [category,loading,refetch]
+    return [categories,loading,refetch]
 };
 
 export default useCategory;

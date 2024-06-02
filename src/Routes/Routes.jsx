@@ -6,8 +6,9 @@ import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import Signup from "../Pages/Signup/Signup";
-import CategoriesSection from "../Pages/Home/CategoriesSection/CategoriesSection";
+// import CategoriesSection from "../Pages/Home/CategoriesSection/CategoriesSection";
 import Shop from "../Pages/Shop/Shop";
+import CategoryData from "../Pages/Home/CategoryData/CategoryData";
 // import Shop from "../Pages/Shop/Shop";
 
   export const router = createBrowserRouter([
@@ -30,7 +31,12 @@ import Shop from "../Pages/Shop/Shop";
         {
             path:'/shop',
             element:<Shop></Shop>
-        }
+        },
+        {
+            path:`/categoryData/:category`,
+            element:<CategoryData></CategoryData>
+        },
+
         // {
         //     path:'/shop/:category',
         //     element:<Shop></Shop>,
