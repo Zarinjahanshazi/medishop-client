@@ -100,8 +100,8 @@ const NavBar = () => {
                                     </label>
                                     <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                                         <li><button className="text-red-600 font-bold" onClick={handleLogout}>Log Out</button></li>
-                                        <li><h2 className='text-green-500 font-semibold'>update profile</h2></li>
-                                        <li><h2 className='text-green-500 font-semibold'>Dashboard</h2></li>
+                                        <Link to='/userUpdateProfile'><li><h2 className='text-green-500 font-semibold'>update profile</h2></li></Link>
+                                        <Link to='/dashboard'><li><h2 className='text-green-500 font-semibold'>Dashboard</h2></li></Link>
                                         <p className='ml-3'>
                                             <div className="justify-between">
                                                 <h2 className='text-green-500 font-semibold'>{

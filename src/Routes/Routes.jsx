@@ -11,6 +11,17 @@ import Shop from "../Pages/Shop/Shop";
 import CategoryData from "../Pages/Home/CategoryData/CategoryData";
 import CartPage from "../Pages/CartPage/CartPage";
 import Checkoutpage from "../Pages/CheckoutPage/Checkoutpage";
+import UserUpdateProfile from "../Dashboard/UserDashboard/UserUpdateProfile/UserUpdateProfile";
+import UserDAshboard from "../Dashboard/UserDashboard/UserDashboard/UserDAshboard";
+import ManageUsers from "../Dashboard/AdminDashboard/ManageUsers/ManageUsers";
+import Dashboard from "../Dashboard/Dashboard/Dashboard";
+import ManageCategory from "../Dashboard/AdminDashboard/ManageCategory/ManageCategory";
+import PaymentManagement from "../Dashboard/AdminDashboard/PaymentManagemant/PaymentManagement";
+import SalesReport from "../Dashboard/AdminDashboard/SalesReport/SalesReport";
+import ManageBannerAdvertise from "../Dashboard/AdminDashboard/ManageBannerAdvertise/ManageBannerAdvertise";
+import ManageMedicines from "../Dashboard/SellerDashboard/ManageMedicines/ManageMedicines";
+import PaymentHistory from "../Dashboard/SellerDashboard/PaymentHistory/PaymentHistory";
+import AskForAdvertisement from "../Dashboard/SellerDashboard/AskForAdvertisement/AskForAdvertisement";
 // import Shop from "../Pages/Shop/Shop";
 
   export const router = createBrowserRouter([
@@ -46,7 +57,12 @@ import Checkoutpage from "../Pages/CheckoutPage/Checkoutpage";
           path:'/checkout',
           element:<Checkoutpage></Checkoutpage>,
         },
+        {
+          path:'/userUpdateProfile',
+          element:<UserUpdateProfile></UserUpdateProfile>
+        },
 
+       
         // {
         //     path:'/shop/:category',
         //     element:<Shop></Shop>,
@@ -55,4 +71,53 @@ import Checkoutpage from "../Pages/CheckoutPage/Checkoutpage";
 
       ]
     },
+    {
+      path: "dashboard",
+      element: <Dashboard></Dashboard>,
+      children: [
+        //user route
+        {
+          path:'paymentHistory',
+          element:<UserDAshboard></UserDAshboard>
+        },
+
+        //admin route
+        {
+          path:'manageUsers',
+          element:<ManageUsers></ManageUsers>
+        },
+        {
+          path:'manageCategory',
+          element:<ManageCategory></ManageCategory>
+        },
+        {
+          path:'paymentManagement',
+          element:<PaymentManagement></PaymentManagement>
+        },
+        {
+          path:'salesReport',
+         element:<SalesReport></SalesReport>
+        },
+        {
+          path:'manageBannerAdvertise',
+          element:<ManageBannerAdvertise></ManageBannerAdvertise>
+        },
+        // seller route
+        {
+          path:'manageMedicines',
+          element:<ManageMedicines></ManageMedicines>
+        },
+        {
+          path:'sellerPaymentHistory',
+          element:<PaymentHistory></PaymentHistory>
+        },
+        {
+          path:'askForAdvertisement',
+          element:<AskForAdvertisement></AskForAdvertisement>
+          
+        },
+
+
+      ]
+    }
   ]);
