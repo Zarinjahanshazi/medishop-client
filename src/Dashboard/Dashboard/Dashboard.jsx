@@ -27,11 +27,11 @@ const Dashboard = () => {
             > */}
             <div>
                 <div>
-                    <img
+                    {/* <img
                         className="md:w-3/4 w-1/2 mx-auto h-1/2  rounded-full"
                         src="https://i.ibb.co/99sqTLC/logo1.png"
                         alt=""
-                    />
+                    /> */}
                 </div>
                 <ul className="menu md:p-2 p-0 md:text-lg text-xs">
                     {/* {logged?.role === 'user' && (
