@@ -1,5 +1,6 @@
 
 import Banner from "../Banner/Banner";
+import DiscountSection from "../DiscountSection/DiscountSection";
 // import CategoriesSection from "../CategoriesSection/CategoriesSection";
 // import CategoryData from "../CategoryData/CategoryData";
 import UsersQueries from "../UsersQueries/UsersQueries";
@@ -14,6 +15,7 @@ const Home = () => {
             {/* <CategoriesSection></CategoriesSection> */}
             <UsersQueries></UsersQueries>
             <MainCategoryData></MainCategoryData>
+            <DiscountSection></DiscountSection>
             {/* <CategoryData></CategoryData> */}
         </div>
     );

@@ -1,6 +1,5 @@
-import useQueries from "../../../hooks/useQueries";
-// import SingleQuery from "./SingleQuery";
-// import useUsers from "../../../hooks/useUsers";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -8,17 +7,25 @@ import "swiper/css";
 import "swiper/css/grid";
 import "swiper/css/pagination";
 import { Grid, Pagination } from "swiper/modules";
+import SingleDiscount from "./SingleDiscount";
 
 
-import SingleQuery from "./SingleQuery";
+const DiscountSection = () => {
+    const axiosPublic = useAxiosPublic();
+    
+    const { data:discount = [], isPending:loading, refetch} = useQuery({
+        queryKey: ['discount'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/discounts');
+            return res.data;
 
-
-const UsersQueries = () => {
-    const [query] = useQueries();
-    // console.log('query',query);
+        }
+    })
+    console.log('discounts medicine',discount)
     return (
-        <div>
-            <h2 className="text-3xl">{query.length}</h2>
+        <div className="mt-10">
+            <div>
+            <h2 className="text-3xl">{discount.length}</h2>
             {/* <div className="">
             {
                 query.slice(0, 3).map(item => <SingleQuery item={item} key={item._id}></SingleQuery> )
@@ -37,15 +44,17 @@ const UsersQueries = () => {
             modules={[Grid, Pagination]}
             className="mySwiper"
           >
-            {query.slice(0,3).map((item) => (
+            {discount.map((item) => (
               <SwiperSlide key={item._id}>
                 {/* <ReviewCard review={review} /> */}
-                <SingleQuery item={item}></SingleQuery>
+                {/* <SingleQuery item={item}></SingleQuery> */}
+                <SingleDiscount item={item}></SingleDiscount>
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
+        </div>
     );
 };
 
-export default UsersQueries;
+export default DiscountSection;

@@ -19,10 +19,10 @@ const NavBar = () => {
       </li>
       
       <li>
-        <Link to="/dashboard/cart">
+        <Link to="/cart">
           <button className="btn bg-[#05b37e]">
           <p className="mr-2"><FaShoppingCart /></p>
-            <div className="badge   badge-secondary">+0</div>
+            <div className="badge  badge-secondary">+0</div>
           </button>
         </Link>
       </li>

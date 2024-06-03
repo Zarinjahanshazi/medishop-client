@@ -9,6 +9,8 @@ import Signup from "../Pages/Signup/Signup";
 // import CategoriesSection from "../Pages/Home/CategoriesSection/CategoriesSection";
 import Shop from "../Pages/Shop/Shop";
 import CategoryData from "../Pages/Home/CategoryData/CategoryData";
+import CartPage from "../Pages/CartPage/CartPage";
+import Checkoutpage from "../Pages/CheckoutPage/Checkoutpage";
 // import Shop from "../Pages/Shop/Shop";
 
   export const router = createBrowserRouter([
@@ -35,6 +37,14 @@ import CategoryData from "../Pages/Home/CategoryData/CategoryData";
         {
             path:`/categoryData/:category`,
             element:<CategoryData></CategoryData>
+        },
+        {
+          path:'/cart',
+          element:<CartPage></CartPage>
+        },
+        {
+          path:'/checkout',
+          element:<Checkoutpage></Checkoutpage>,
         },
 
         // {
