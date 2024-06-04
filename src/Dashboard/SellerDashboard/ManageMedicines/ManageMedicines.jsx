@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form"
-import useAxiosPublic from "../../hooks/useAxiosPublic";
+// import useAxiosPublic from "../../hooks/useAxiosPublic";
 // import getImageIlink from "../../../utils/getImageIlink";
 import getImageIlink from "../../.././utils/getImageIlink.js"
 import axios from "axios";
 
 const ManageMedicines = () => {
-  const axiosPublic = useAxiosPublic();
+  // const axiosPublic = useAxiosPublic();
   const [showModal, setShowModal] = useState(false);
   const {
     register,
