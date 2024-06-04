@@ -2,10 +2,10 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckoutForm from "./CheckoutForm";
 
-const stripePromise = loadStripe("");
+const stripePromise = loadStripe(import.meta.env.VITE_Payment_GateWay_PK);
 const Checkoutpage = () => {
   return (
-    <div>
+    <div  className="max-w-6xl mx-auto">
       <Elements stripe={stripePromise}>
         <CheckoutForm />
       </Elements>

@@ -4,6 +4,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { useContext, useState } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
+import { Helmet } from "react-helmet";
 // import useAuth from "../../hooks/useAuth";
 // import { useLocation, useNavigate } from "react-router-dom";
 // import useCart from "../../hooks/useCart";
@@ -49,6 +50,9 @@ const Shop = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>MediShop|Shop</title>
+      </Helmet>
       <div className="flex justify-evenly my-4">
         <h2 className="text-3xl">Shop</h2>
       </div>
