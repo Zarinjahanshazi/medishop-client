@@ -22,6 +22,9 @@ import ManageBannerAdvertise from "../Dashboard/AdminDashboard/ManageBannerAdver
 import ManageMedicines from "../Dashboard/SellerDashboard/ManageMedicines/ManageMedicines";
 import PaymentHistory from "../Dashboard/SellerDashboard/PaymentHistory/PaymentHistory";
 import AskForAdvertisement from "../Dashboard/SellerDashboard/AskForAdvertisement/AskForAdvertisement";
+import UserHome from "../Dashboard/UserDashboard/UserHome/UserHome";
+import AdminHome from "../Dashboard/AdminDashboard/AdminHome/AdminHome";
+import SellerHome from "../Dashboard/SellerDashboard/SellerHome/SellerHome";
 // import Shop from "../Pages/Shop/Shop";
 
   export const router = createBrowserRouter([
@@ -76,12 +79,20 @@ import AskForAdvertisement from "../Dashboard/SellerDashboard/AskForAdvertisemen
       element: <Dashboard></Dashboard>,
       children: [
         //user route
+        // {
+        //   path:'userHome',
+        //   element:<UserHome></UserHome>
+        // },
         {
           path:'paymentHistory',
           element:<UserDAshboard></UserDAshboard>
         },
 
         //admin route
+        {
+          path:'adminHome',
+          element:<AdminHome></AdminHome>
+        },
         {
           path:'manageUsers',
           element:<ManageUsers></ManageUsers>
@@ -103,6 +114,10 @@ import AskForAdvertisement from "../Dashboard/SellerDashboard/AskForAdvertisemen
           element:<ManageBannerAdvertise></ManageBannerAdvertise>
         },
         // seller route
+        {
+          path:'sellerHome',
+          element:<SellerHome></SellerHome>
+        },
         {
           path:'manageMedicines',
           element:<ManageMedicines></ManageMedicines>

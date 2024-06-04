@@ -3,9 +3,12 @@ import { FaHouseMedical } from "react-icons/fa6";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { FaShoppingCart } from "react-icons/fa";
+// import useCart from "../../../hooks/useCart";
 
 const NavBar = () => {
     const {user,logOut} = useContext(AuthContext);
+    // const [cart] = useCart();
+
     const handleLogout = () => {
         logOut();
     }
@@ -22,7 +25,7 @@ const NavBar = () => {
         <Link to="/cart">
           <button className="btn bg-[#05b37e]">
           <p className="mr-2"><FaShoppingCart /></p>
-            <div className="badge  badge-secondary">+0</div>
+            <div className="badge  badge-secondary">+cart</div>
           </button>
         </Link>
       </li>

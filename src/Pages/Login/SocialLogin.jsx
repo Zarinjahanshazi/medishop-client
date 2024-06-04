@@ -3,41 +3,40 @@ import { FaGoogle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Providers/AuthProvider";
+import axios from "axios";
 
 
 const SocialLogin = () => {
-    const {googleSignIn} = useContext(AuthContext);
+    const { googleSignIn } = useContext(AuthContext);
     // const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
-    
-    const handleGoogleSignIn = () =>{
+
+    const handleGoogleSignIn = () => {
         googleSignIn()
-        .then(result => {
-            console.log(result.user);
+            .then(async result => {
+                console.log(result.user);
 
-            const userInfo = {
-                email: result?.user?.email,
-                name: result?.user?.displayName,
-                photo: result?.user?.photoURL
+                const userInfo = {
+                    email: result?.user?.email,
+                    name: result?.user?.displayName,
+                    photo: result?.user?.photoURL,
+                    role: 'user'
 
-            };
-            // axiosPublic.post('/users', userInfo)
-            // .then(res => {
-            //     console.log(res.data);
-            //     navigate('/');
-            // })
-            console.log(userInfo);
-            Swal.fire({
-                title: 'User Login Successful.',
-                showClass: {
-                    popup: 'animate__animated animate__fadeInDown'
-                },
-                hideClass: {
-                    popup: 'animate__animated animate__fadeOutUp'
+                };
+                const res2 = await axios.post(`${import.meta.env.VITE_SERVER_URL}/users`, userInfo)
+                console.log(res2);
+                if (res2.data.insertedId) {
+                    console.log("user added to the database");
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "User Created successfully",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    navigate("/");
                 }
-            });
-            // navigate(location?.state ? location.state : '/');
-        })
+            })
     }
 
     return (
@@ -47,7 +46,7 @@ const SocialLogin = () => {
                 <FaGoogle></FaGoogle>
                 Google
             </button>
-            
+
         </div>
     );
 };

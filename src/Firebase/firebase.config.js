@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDmC7LFgNN6QAukEgYPYJFHdpJA0I1bp2s",
-  authDomain: "medishop-client.firebaseapp.com",
-  projectId: "medishop-client",
-  storageBucket: "medishop-client.appspot.com",
-  messagingSenderId: "1075978825417",
-  appId: "1:1075978825417:web:517af94201f04986b4a718"
+  apiKey:import.meta.env.VITE_apiKey,
+  authDomain:import.meta.env.VITE_authDomain,
+  projectId:import.meta.env.VITE_projectId,
+  storageBucket:import.meta.VITE_messagingSenderId,
+  messagingSenderId:import.meta.env.VITE_apiKey,
+  appId:import.meta.env.VITE_appId
 };
 
 // Initialize Firebase

@@ -1,5 +1,6 @@
 import { AiFillMedicineBox } from "react-icons/ai";
 import { BiCategory } from "react-icons/bi";
+import { FaHome } from "react-icons/fa";
 import { FaUser } from "react-icons/fa6";
 import { FcSalesPerformance } from "react-icons/fc";
 import { MdOutlinePayment } from "react-icons/md";
@@ -45,6 +46,7 @@ const Dashboard = () => {
                     
                         <>
                             <h2 className="md:text-xl text-xs font-bold text-center">User</h2>
+                            {/* <li><NavLink to='/dashboard/userHome'> <FaHome></FaHome>User Home</NavLink></li> */}
                             <li><NavLink to='/dashboard/paymentHistory'><MdOutlinePayment />Payment History</NavLink></li>
                             
                         </>
@@ -62,6 +64,7 @@ const Dashboard = () => {
                         <>
                             <h2 className="md:text-xl text-xs font-bold text-center">Admin</h2>
                             
+                            <li><NavLink to='/dashboard/adminHome'> <FaHome></FaHome> Admin Home</NavLink></li>
                             <li><NavLink to='/dashboard/manageUsers'><FaUser></FaUser> Manage Users</NavLink></li>
                             <li><NavLink to='/dashboard/manageCategory'><BiCategory />Manage Category</NavLink></li>
                             <li><NavLink to='/dashboard/paymentManagement'><MdOutlinePayment />Payment Management</NavLink></li>
@@ -82,6 +85,7 @@ const Dashboard = () => {
                         <>
                             <h2 className="md:text-xl text-xs font-bold text-center">Seller</h2>
                             <div className="divider"></div>
+                            <li><NavLink to='/dashboard/sellerHome'> <FaHome></FaHome>Seller Home</NavLink></li>
                             <li><NavLink to='/dashboard/manageMedicines'><AiFillMedicineBox />Manage Medicine</NavLink></li>
                             <li><NavLink to='/dashboard/sellerPaymentHistory'><MdOutlinePayment />Seller Payment History</NavLink></li>
                             <li><NavLink to='/dashboard/askForAdvertisement'><RiAdvertisementFill />Ask For Advertisement</NavLink></li>
