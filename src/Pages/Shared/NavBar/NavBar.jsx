@@ -6,12 +6,12 @@ import { FaShoppingCart } from "react-icons/fa";
 // import useCart from "../../../hooks/useCart";
 
 const NavBar = () => {
-    const {user,logOut} = useContext(AuthContext);
-    // const [cart] = useCart();
+  const { user, logOut, addMedicine } = useContext(AuthContext);
+  // const [cart] = useCart();
 
-    const handleLogout = () => {
-        logOut();
-    }
+  const handleLogout = () => {
+    logOut();
+  }
   const links = (
     <>
       <li className="font-semibold">
@@ -20,12 +20,12 @@ const NavBar = () => {
       <li className="font-semibold">
         <NavLink to="/shop">Shop</NavLink>
       </li>
-      
+
       <li>
         <Link to="/cart">
           <button className="btn bg-[#05b37e]">
-          <p className="mr-2"><FaShoppingCart /></p>
-            <div className="badge  badge-secondary">+cart</div>
+            <p className="mr-2"><FaShoppingCart /></p>
+            <div className="badge  badge-secondary">{addMedicine.length ? addMedicine.length : 0}+cart</div>
           </button>
         </Link>
       </li>
@@ -82,44 +82,44 @@ const NavBar = () => {
             <ul className="menu menu-horizontal px-1 gap-4">{links}</ul>
           </div>
           <div className="navbar-end">
-                        <div className="indicator mr-4">
-                            
-                            <div className="dropdown">
-                             <div tabIndex={0} role="button" className="btn m-1">Language</div>
-                             <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 bg-[#05b37e] shadow rounded-box w-52">
-                             <li><a>Bangla</a></li>
-                          <li><a>English</a></li>
-                            </ul>
-                                </div>
-                        </div>
-                        {user ? (
-                            <>
+            <div className="indicator mr-4">
 
-                                <div className="dropdown dropdown-end">
-                                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                                        <div className="w-10 rounded-full">
-                                            <img className="rounded-full flex justify-center items-center mx-auto" src={user.photoURL} alt="user profile" />
-                                        </div>
-                                    </label>
-                                    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                                        <li><button className="text-red-600 font-bold" onClick={handleLogout}>Log Out</button></li>
-                                        <Link to='/userUpdateProfile'><li><h2 className='text-green-500 font-semibold'>update profile</h2></li></Link>
-                                        <Link to='/dashboard'><li><h2 className='text-green-500 font-semibold'>Dashboard</h2></li></Link>
-                                        <p className='ml-3'>
-                                            <div className="justify-between">
-                                                <h2 className='text-green-500 font-semibold'>{
-                                                user.displayName}</h2>
-                                            </div>
-                                        </p>
-                                        
-                                    </ul>
-                                </div>
+              <div className="dropdown">
+                <div tabIndex={0} role="button" className="btn m-1">Language</div>
+                <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 bg-[#05b37e] shadow rounded-box w-52">
+                  <li><a>Bangla</a></li>
+                  <li><a>English</a></li>
+                </ul>
+              </div>
+            </div>
+            {user ? (
+              <>
 
-                            </>
-                        ) : (
-                            <NavLink to='/login' className="btn btn-outline btn-warning">Join Us</NavLink>
-                        )}
+                <div className="dropdown dropdown-end">
+                  <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                    <div className="w-10 rounded-full">
+                      <img className="rounded-full flex justify-center items-center mx-auto" src={user.photoURL} alt="user profile" />
                     </div>
+                  </label>
+                  <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                    <li><button className="text-red-600 font-bold" onClick={handleLogout}>Log Out</button></li>
+                    <Link to='/userUpdateProfile'><li><h2 className='text-green-500 font-semibold'>update profile</h2></li></Link>
+                    <Link to='/dashboard'><li><h2 className='text-green-500 font-semibold'>Dashboard</h2></li></Link>
+                    <p className='ml-3'>
+                      <div className="justify-between">
+                        <h2 className='text-green-500 font-semibold'>{
+                          user.displayName}</h2>
+                      </div>
+                    </p>
+
+                  </ul>
+                </div>
+
+              </>
+            ) : (
+              <NavLink to='/login' className="btn btn-outline btn-warning">Join Us</NavLink>
+            )}
+          </div>
         </div>
       </div>
     </div>

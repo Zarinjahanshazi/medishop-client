@@ -2,7 +2,8 @@ import { FaEye } from "react-icons/fa6";
 import { GrCheckboxSelected } from "react-icons/gr";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../Providers/AuthProvider";
 // import useAuth from "../../hooks/useAuth";
 // import { useLocation, useNavigate } from "react-router-dom";
 // import useCart from "../../hooks/useCart";
@@ -23,65 +24,28 @@ const Shop = () => {
       return data;
     },
   });
+  console.log(getData);
+  const { setAddMedicine, addMedicine } = useContext(AuthContext)
 
-  // const handleAddToCart = () =>{
-  //   if(user && user.email){
-  //     //send cart item to the database
-  //     // console.log(user.email,food);
-  //     const cartItem = {
-  //       // menuId:_id,
-  //       // email:user.email,
-  //       // name,
-  //       // image,
-  //       // price
-        
-
-  //     }
-
-  //     axiosSecure.post('/carts',cartItem)
-  //     .then(res =>{
-  //       console.log(res.data);
-  //       if(res.data.insertedId){
-  //         Swal.fire({
-  //           position: "top-end",
-  //           icon: "success",
-  //           title: `${name} added to your cart`,
-  //           showConfirmButton: false,
-  //           timer: 1500
-  //         });
-  //         // refetch the cart to update the cart items count
-  //         refetch();
-
-  //       }
-  //     })
-
-  //   }
-  //   else{
-  //     Swal.fire({
-  //       title: "You are not Logged In",
-  //       text: "Please login to add to the cart",
-  //       icon: "warning",
-  //       showCancelButton: true,
-  //       confirmButtonColor: "#3085d6",
-  //       cancelButtonColor: "#d33",
-  //       confirmButtonText: "Yes, login"
-  //     }).then((result) => {
-  //       if (result.isConfirmed) {
-         
-  //           // send the user to the login page
-  //           navigate('/login', {state:{from:location}})
-         
-  //       }
-  //     });
-
-  //   }
-  // }
 
   const [currentItem, setCurrentItem] = useState(null);
   const handleOpenModal = (item) => {
     setCurrentItem(item);
     document.getElementById("my_modal_1").showModal();
   };
+  const handleAddMedicine = (item) => {
+    const isExist = addMedicine.find(i => i._id === item._id);
+    if (!isExist) {
+      item.quanty = 1;
+      item.totalPrice = parseFloat(item.price_per_unit * item.quanty).toFixed(2)
+      setAddMedicine([...addMedicine, item]);
+    } else {
+      isExist.quanty += 1;
+      item.TotalPrice = parseFloat(item.price_per_unit * isExist.quanty).toFixed(2)
+      setAddMedicine([...addMedicine]);
+    }
+
+  }
 
   return (
     <div>
@@ -108,9 +72,9 @@ const Shop = () => {
                 <td>{item.medicine_name}</td>
                 <td>{item.category}</td>
                 <td>
-                  <button className="btn bg-orange-500 btn-lg">
+                  <button onClick={() => handleAddMedicine(item)} className="btn bg-orange-500 btn-lg">
                     <h2 className="text-white text-2xl">
-                      
+
                       <GrCheckboxSelected />
                     </h2>
                   </button>
@@ -155,3 +119,60 @@ const Shop = () => {
 };
 
 export default Shop;
+
+
+
+{
+  // const handleAddToCart = () =>{
+  //   if(user && user.email){
+  //     //send cart item to the database
+  //     // console.log(user.email,food);
+  //     const cartItem = {
+  //       // menuId:_id,
+  //       // email:user.email,
+  //       // name,
+  //       // image,
+  //       // price
+
+
+  //     }
+
+  //     axiosSecure.post('/carts',cartItem)
+  //     .then(res =>{
+  //       console.log(res.data);
+  //       if(res.data.insertedId){
+  //         Swal.fire({
+  //           position: "top-end",
+  //           icon: "success",
+  //           title: ${name} added to your cart,
+  //           showConfirmButton: false,
+  //           timer: 1500
+  //         });
+  //         // refetch the cart to update the cart items count
+  //         refetch();
+
+  //       }
+  //     })
+
+  //   }
+  //   else{
+  //     Swal.fire({
+  //       title: "You are not Logged In",
+  //       text: "Please login to add to the cart",
+  //       icon: "warning",
+  //       showCancelButton: true,
+  //       confirmButtonColor: "#3085d6",
+  //       cancelButtonColor: "#d33",
+  //       confirmButtonText: "Yes, login"
+  //     }).then((result) => {
+  //       if (result.isConfirmed) {
+
+  //           // send the user to the login page
+  //           navigate('/login', {state:{from:location}})
+
+  //       }
+  //     });
+
+  //   }
+  // }
+}

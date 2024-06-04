@@ -1,6 +1,7 @@
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { app } from "../../Firebase/firebase.config";
+import axios from "axios";
 
 
 export const AuthContext = createContext({});
@@ -11,6 +12,7 @@ const AuthProvider = ({children}) => {
     const [user,setUser] = useState(null);
     const [loading,setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
+    const [addMedicine, setAddMedicine] = useState([])
     // const axiosPublic = useAxiosPublic();
 
     
@@ -42,28 +44,51 @@ const AuthProvider = ({children}) => {
         });
     }
 
-    useEffect(() =>{
-        const unsubscribe = onAuthStateChanged(auth, currentUser =>{
-              setUser(currentUser);
-            setLoading(false);
+    // useEffect(() =>{
+    //     const unsubscribe = onAuthStateChanged(auth, currentUser =>{
+    //           setUser(currentUser);
+    //         setLoading(false);
               
-          });
-          return () =>{
-              return unsubscribe();
-          }
-      },[])
+    //       });
+    //       return () =>{
+    //           return unsubscribe();
+    //       }
+    //   },[])
 
-      const authInfo ={
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, async currentUser => {
+            setUser(currentUser);
+            setLoading(false);
+            console.log(currentUser);
+            if (currentUser) {
+                console.log(currentUser);
+                const userData = {
+                    email: currentUser.email
+                }
+                const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}/jwt`, userData)
+                console.log(response.data);
+                localStorage.setItem('accessToken', response.data.token)
+            }
+            else {
+                localStorage.removeItem("accessToken")
+            }
+
+        });
+        return () => {
+            return unsubscribe();
+        }
+    }, [])
+
+      const authInfo = {
         user,
         loading,
         createUser,
         signIn,
         logOut,
         updateUserProfile,
-        googleSignIn
-
-
-
+        googleSignIn,
+        setAddMedicine,
+        addMedicine
 
     }
     return (
