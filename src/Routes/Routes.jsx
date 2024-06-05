@@ -25,6 +25,7 @@ import AskForAdvertisement from "../Dashboard/SellerDashboard/AskForAdvertisemen
 import UserHome from "../Dashboard/UserDashboard/UserHome/UserHome";
 import AdminHome from "../Dashboard/AdminDashboard/AdminHome/AdminHome";
 import SellerHome from "../Dashboard/SellerDashboard/SellerHome/SellerHome";
+import InvoicePage from "../Pages/InvoicePage/InvoicePage";
 // import Shop from "../Pages/Shop/Shop";
 
   export const router = createBrowserRouter([
@@ -63,6 +64,10 @@ import SellerHome from "../Dashboard/SellerDashboard/SellerHome/SellerHome";
         {
           path:'/userUpdateProfile',
           element:<UserUpdateProfile></UserUpdateProfile>
+        },
+        {
+          path:'/invoice',
+          element:<InvoicePage></InvoicePage>
         },
 
        
