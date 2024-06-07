@@ -22,7 +22,7 @@ import ManageBannerAdvertise from "../Dashboard/AdminDashboard/ManageBannerAdver
 import ManageMedicines from "../Dashboard/SellerDashboard/ManageMedicines/ManageMedicines";
 import PaymentHistory from "../Dashboard/SellerDashboard/PaymentHistory/PaymentHistory";
 import AskForAdvertisement from "../Dashboard/SellerDashboard/AskForAdvertisement/AskForAdvertisement";
-import UserHome from "../Dashboard/UserDashboard/UserHome/UserHome";
+// import UserHome from "../Dashboard/UserDashboard/UserHome/UserHome";
 import AdminHome from "../Dashboard/AdminDashboard/AdminHome/AdminHome";
 import SellerHome from "../Dashboard/SellerDashboard/SellerHome/SellerHome";
 import InvoicePage from "../Pages/InvoicePage/InvoicePage";

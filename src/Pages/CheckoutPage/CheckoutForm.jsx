@@ -1,9 +1,9 @@
 
-/* eslint-disable react/prop-types */
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = ({ amount }) => {
     const { user, addMedicine, setAddMedicine } = useContext(AuthContext)
@@ -15,6 +15,7 @@ const CheckoutForm = ({ amount }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [clientSecret, setClientSecret] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -63,7 +64,7 @@ const CheckoutForm = ({ amount }) => {
             setTransectionId(paymentIntent.id)
             const paymentData = {
                 email: user?.email,
-                totalPrice: paymentIntent.amount,
+                totalPrice: (paymentIntent.amount / 100),
                 date: new Date(),
                 transectionId: paymentIntent.id,
                 medicines: addMedicine.map(item => {
@@ -78,6 +79,7 @@ const CheckoutForm = ({ amount }) => {
                     if (res.data) {
                         setAddMedicine([])
                         console.log(res.data);
+                        navigate ('/invoice');
                     }
                 })
         }
