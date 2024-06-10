@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 const DownBanner = () => {
     return (
         <div>
-             {/* <div className="hero min-h-screen bg-base-200 mb-10">
+             <div className="hero min-h-screen bg-base-200 mb-10">
                     <div className="hero-content flex-col lg:flex-row justify-between">
                         <img src="https://i.ibb.co/N78YLZq/empty-drugstore-with-bottles-packages-full-with-medicaments-retail-shop-shelves-with-pharmaceutical.jpg" className="max-w-sm rounded-lg shadow-2xl" />
                         <div>
@@ -30,7 +30,7 @@ const DownBanner = () => {
                             </div>
                         </div>
                     </div>
-                </div> */}
+                </div>
             
         </div>
     );
