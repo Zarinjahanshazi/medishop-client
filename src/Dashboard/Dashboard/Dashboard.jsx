@@ -1,41 +1,46 @@
 import { AiFillMedicineBox } from "react-icons/ai";
 import { BiCategory } from "react-icons/bi";
-import { FaHome } from "react-icons/fa";
 import { FaUser } from "react-icons/fa6";
 import { FcSalesPerformance } from "react-icons/fc";
 import { MdOutlinePayment } from "react-icons/md";
 import { RiAdvertisementFill, RiHome8Fill } from "react-icons/ri";
 import { NavLink, Outlet } from "react-router-dom";
+import useGetMe from "../../hooks/geMe";
+import { useContext } from "react";
+import { AuthContext } from "../../Pages/Providers/AuthProvider";
 
 
 const Dashboard = () => {
+    const { user } = useContext(AuthContext)
+    const [meData] = useGetMe(user?.email)
+    console.log(meData);
     return (
         <div>
 
-<div className="flex flex-col md:flex-row gap-10 md:mx-20">
-            {/* Mobile Sidebar Toggle Button */}
-            {/* <button
+            <div className="flex flex-col md:flex-row gap-10 md:mx-20">
+                {/* Mobile Sidebar Toggle Button */}
+                {/* <button
                 className="md:hidden fixed top-4 right-4 p-2"
                 onClick={() => setShowSidebar(!showSidebar)}
             >
                 {showSidebar ? <IoIosCloseCircle /> : <IoMenu />}
             </button> */}
 
-            {/* Sidebar */}
-            {/* <div
+                {/* Sidebar */}
+                {/* <div
                 className={`md:w-60 w-32 shadow-2xl md:shadow-none rounded-b-lg md:rounded-b-none md:min-h-screen bg-orange-200 ${showSidebar ? "block" : "hidden"
                     } md:block`}
             > */}
-            <div>
                 <div>
-                    {/* <img
+                    <div>
+                        {/* <img
                         className="md:w-3/4 w-1/2 mx-auto h-1/2  rounded-full"
                         src="https://i.ibb.co/99sqTLC/logo1.png"
                         alt=""
                     /> */}
-                </div>
-                <ul className="menu md:p-2 p-0 md:text-lg text-xs">
-                    {/* {logged?.role === 'user' && (
+                    </div>
+                    <ul className="menu md:p-2 p-0 md:text-lg text-xs">
+                        {/* {logged?.role === 'user' && (
                         <>
                             <h2 className="md:text-xl text-xs font-bold text-center">User</h2>
                             <li><NavLink to='/dashboard/book'><FaBook /> Book a Parcel</NavLink></li>
@@ -43,15 +48,16 @@ const Dashboard = () => {
                             <li><NavLink to='/dashboard/profile'><FaUserCircle /> My Profile</NavLink></li>
                         </>
                     )} */}
-                    
-                        <>
-                            <h2 className="md:text-xl text-xs font-bold text-center">User</h2>
-                            {/* <li><NavLink to='/dashboard/userHome'> <FaHome></FaHome>User Home</NavLink></li> */}
-                            <li><NavLink to='/dashboard/paymentHistory'><MdOutlinePayment />Payment History</NavLink></li>
-                            
-                        </>
-                   
-                    {/* {logged?.role === 'admin' && (
+
+                        {meData?.role == 'user' &&
+                            <>
+                                <h2 className="md:text-xl text-xs font-bold text-center">User</h2>
+                                <li><NavLink to='/dashboard/paymentHistory'><MdOutlinePayment />Payment History</NavLink></li>
+
+                            </>
+                        }
+
+                        {/* {logged?.role === 'admin' && (
                         <>
                             <h2 className="md:text-xl text-xs font-bold text-center">Admin</h2>
                             
@@ -60,19 +66,22 @@ const Dashboard = () => {
                             <li><NavLink to='/dashboard/allusers'><FaPeopleGroup /> Users</NavLink></li>
                         </>
                     )} */}
-                    
-                        <>
-                            <h2 className="md:text-xl text-xs font-bold text-center">Admin</h2>
-                            
-                            <li><NavLink to='/dashboard/adminHome'> <FaHome></FaHome> Admin Home</NavLink></li>
-                            <li><NavLink to='/dashboard/manageUsers'><FaUser></FaUser> Manage Users</NavLink></li>
-                            <li><NavLink to='/dashboard/manageCategory'><BiCategory />Manage Category</NavLink></li>
-                            <li><NavLink to='/dashboard/paymentManagement'><MdOutlinePayment />Payment Management</NavLink></li>
-                            <li><NavLink to='/dashboard/salesReport'><FcSalesPerformance />Sales Report </NavLink></li>
-                            <li><NavLink to='/dashboard/manageBannerAdvertise'><RiAdvertisementFill />Manage Banner Advertises</NavLink></li>
-                        </>
-                   
-                    {/* {logged?.role === 'deliverymen' && (
+
+                        {
+                            meData?.role === 'admin' && (
+                                <>
+                                    <h2 className="md:text-xl text-xs font-bold text-center">Admin</h2>
+
+                                    <li><NavLink to='/dashboard/manageUsers'><FaUser></FaUser> Manage Users</NavLink></li>
+                                    <li><NavLink to='/dashboard/manageCategory'><BiCategory />Manage Category</NavLink></li>
+                                    <li><NavLink to='/dashboard/paymentManagement'><MdOutlinePayment />Payment Management</NavLink></li>
+                                    <li><NavLink to='/dashboard/salesReport'><FcSalesPerformance />Sales Report </NavLink></li>
+                                    <li><NavLink to='/dashboard/manageBannerAdvertise'><RiAdvertisementFill />Manage Banner Advertises</NavLink></li>
+                                </>
+                            )
+                        }
+
+                        {/* {logged?.role === 'deliverymen' && (
                         <>
                             <h2 className="md:text-xl text-xs font-bold text-center">Delivery Man</h2>
                             <div className="divider"></div>
@@ -80,31 +89,32 @@ const Dashboard = () => {
                             <li><NavLink to='/dashboard/reviews'><RiFeedbackFill /> Reviews</NavLink></li>
                         </>
                     )} */}
-                   
-                    
-                        <>
-                            <h2 className="md:text-xl text-xs font-bold text-center">Seller</h2>
-                            <div className="divider"></div>
-                            <li><NavLink to='/dashboard/sellerHome'> <FaHome></FaHome>Seller Home</NavLink></li>
-                            <li><NavLink to='/dashboard/manageMedicines'><AiFillMedicineBox />Manage Medicine</NavLink></li>
-                            <li><NavLink to='/dashboard/sellerPaymentHistory'><MdOutlinePayment />Seller Payment History</NavLink></li>
-                            <li><NavLink to='/dashboard/askForAdvertisement'><RiAdvertisementFill />Ask For Advertisement</NavLink></li>
-                        </>
-                   
-                    <div className="divider"></div>
-                    <li><NavLink to='/'><RiHome8Fill /> Home</NavLink></li>
-                </ul>
-            </div>
 
 
-            {/* Main Content */}
-            <div className="flex-1">
-                
-                <Outlet></Outlet>
+                        {
+                            meData?.role === "seller" &&
+                            <>
+                                <h2 className="md:text-xl text-xs font-bold text-center">Seller</h2>
+                                <div className="divider"></div>
+                                <li><NavLink to='/dashboard/manageMedicines'><AiFillMedicineBox />Manage Medicine</NavLink></li>
+                                <li><NavLink to='/dashboard/sellerPaymentHistory'><MdOutlinePayment />Seller Payment History</NavLink></li>
+                                <li><NavLink to='/dashboard/askForAdvertisement'><RiAdvertisementFill />Ask For Advertisement</NavLink></li>
+                            </>
+                        }
+
+                        <div className="divider"></div>
+                        <li><NavLink to='/'><RiHome8Fill /> Home</NavLink></li>
+                    </ul>
+                </div>
+
+                {/* Main Content */}
+                <div className="flex-1">
+
+                    <Outlet></Outlet>
+                </div>
             </div>
-        </div>
-            
-        </div>
+
+        </div >
     );
 };
 

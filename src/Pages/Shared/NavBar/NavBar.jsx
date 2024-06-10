@@ -7,10 +7,12 @@ import { FaShoppingCart } from "react-icons/fa";
 
 const NavBar = () => {
   const { user, logOut, addMedicine } = useContext(AuthContext);
+  console.log(user);
   // const [cart] = useCart();
 
   const handleLogout = () => {
     logOut();
+    localStorage.removeItem("accessToken")
   }
   const links = (
     <>
@@ -29,9 +31,9 @@ const NavBar = () => {
           </button>
         </Link>
       </li>
-      <li className="font-semibold">
+      {/* <li className="font-semibold">
         <NavLink to="/about">About</NavLink>
-      </li>
+      </li> */}
 
     </>
   );

@@ -1,43 +1,69 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form"
-// import useAxiosPublic from "../../hooks/useAxiosPublic";
-// import getImageIlink from "../../../utils/getImageIlink";
-import getImageIlink from "../../.././utils/getImageIlink.js"
+import getImageIlink from "../../../utils/getImageIlink";
 import axios from "axios";
+import useGetMe from "../../../hooks/geMe";
+import { AuthContext } from "../../../Pages/Providers/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
 
 const ManageMedicines = () => {
-  // const axiosPublic = useAxiosPublic();
   const [showModal, setShowModal] = useState(false);
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm()
+  const { user } = useContext(AuthContext)
+  const [meData, , getmeRfetch] = useGetMe(user && user?.email)
 
+  useEffect(() => {
+    getmeRfetch()
+  }, [user, getmeRfetch])
+  const { data: mainCategory = [], } = useQuery({
+    queryKey: ['mainCategoryForAdmin',],
+    queryFn: async () => {
+      const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/maincategory`, {
+        headers: { Authorization: localStorage.getItem('accessToken') }
+      });
+      return res.data;
+    },
+
+  })
+  const { refetch, data: sellerMedicines = [], } = useQuery({
+    queryKey: ['categoriesOfSeller', user?.email],
+    queryFn: async () => {
+      const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/categoriesOfSeller?email=${user?.email}`, {
+        headers: { Authorization: localStorage.getItem('accessToken') }
+      });
+      return res.data;
+    },
+
+  })
+  console.log(sellerMedicines);
   const onSubmit = async (data) => {
     const image = data.image
-    // const res = await getImageIlink(image)
     const res = await getImageIlink(image)
-    if (res) {
+    if (res && meData._id && user) {
       data.image = res
+      data.price_per_unit = parseInt(data.price_per_unit)
+      data.discount = parseInt(data.discount)
+      data.quantity = parseInt(data.quantity) //changes
       if (!data.discount) {
         data.discount = 0
       }
       const itemMassUnit = data.massNumber + data.massUnit
       data.itemMassUnits = itemMassUnit
-
       delete data.massNumber
       delete data.massUnit
+      data.sellerId = meData?._id
       const res2 = await axios.post(`${import.meta.env.VITE_SERVER_URL}/category`, data)
       if (res2.data.acknowledged) {
         setShowModal(false)
+        refetch()
       }
-
-
+      console.log(data);
     }
   }
-
   return (
     <div>
       <button
@@ -85,12 +111,11 @@ const ManageMedicines = () => {
                       {...register('category', { required: true })}
                     >
                       <option disabled value="default">Select a category</option>
-                      <option value="tablet">tablet</option>
-                      <option value="syrup">syrup</option>
-                      <option value="capsule">capsule</option>
-                      <option value="injection">injection</option>
-                      <option value="ointment">ointment</option>
-                      <option value="inheler">inheler</option>
+                      {
+                        mainCategory?.map((item, index) => (
+                          <option key={index} value={item?.name}>{item?.name}</option>
+                        ))
+                      }
                     </select>
                     {errors.category && <span className="text-red-500">Category is required</span>}
                   </label>
@@ -155,19 +180,26 @@ const ManageMedicines = () => {
           <thead>
             <tr>
               <th></th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
+              <th>Company Name</th>
+              <th>Medicine Name</th>
+              <th>Category</th>
+              <th>Mass units</th>
             </tr>
           </thead>
           <tbody>
             {/* row 1 */}
-            <tr>
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Blue</td>
-            </tr>
+            {
+              sellerMedicines?.map((item, index) => (
+                <tr key={index}>
+                  <th>{index + 1}</th>
+                  <th>{item?.company_name}</th>
+                  <td>{item?.medicine_name}</td>
+                  <td>{item?.category}</td>
+                  <td>{item?.itemMassUnits}</td>
+
+                </tr>
+              ))
+            }
 
           </tbody>
         </table>

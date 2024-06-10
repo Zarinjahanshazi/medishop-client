@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const CartPage = () => {
   const { addMedicine, setAddMedicine } = useContext(AuthContext)
@@ -21,7 +21,7 @@ const CartPage = () => {
   return (
     <div>
       <Helmet>
-        <title>MediShop|Cart</title>
+        <title>Medi-Shop|Cart</title>
       </Helmet>
       <div className="flex justify-around mt-8">
         <div>

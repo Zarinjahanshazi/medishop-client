@@ -1,18 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "./useAxiosPublic";
+import axios from "axios";
 
 const useMainCategoryData = () => {
-    const axiosPublic = useAxiosPublic();
-    
-    const { data:mcategory = [], isPending:loading, refetch} = useQuery({
-        queryKey: ['mcategory'],
+
+    const { data: mcategory = [], isPending: loading, refetch } = useQuery({
+        queryKey: ['maincategory'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/maincategory');
+            const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/maincategory`,
+            );
             return res.data;
+
+
 
         }
     })
-    return [mcategory,loading,refetch]
+    return [mcategory, loading, refetch]
 };
 
 export default useMainCategoryData;

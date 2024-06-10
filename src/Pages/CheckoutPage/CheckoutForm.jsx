@@ -1,4 +1,4 @@
-
+/* eslint-disable react/prop-types */
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 const CheckoutForm = ({ amount }) => {
     const { user, addMedicine, setAddMedicine } = useContext(AuthContext)
     console.log(addMedicine);
+    const navigate = useNavigate();
     const [prcessing, setProcessing] = useState(false)
     const [transectionId, setTransectionId] = useState('')
     const [error, setError] = useState('')
@@ -15,7 +16,6 @@ const CheckoutForm = ({ amount }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [clientSecret, setClientSecret] = useState("");
-    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -79,7 +79,7 @@ const CheckoutForm = ({ amount }) => {
                     if (res.data) {
                         setAddMedicine([])
                         console.log(res.data);
-                        navigate ('/invoice');
+                        navigate('/invoice')
                     }
                 })
         }

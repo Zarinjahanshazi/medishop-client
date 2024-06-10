@@ -1,15 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { DownloadTableExcel } from "react-export-table-to-excel";
 
 
 const SalesReport = () => {
+    const tableRef = useRef(null);
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
     const { refetch, data: sellesReport = [], isLoading } = useQuery({
         queryKey: ['sellsReport', startDate, endDate],
         queryFn: async () => {
-            const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/sellsReport?startDate=${startDate}&endDate=${endDate}`);
+            const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/sellsReport?startDate=${startDate}&endDate=${endDate}`, {
+                headers: { Authorization: localStorage.getItem('accessToken') }
+            });
             return res.data;
         },
     })
@@ -28,8 +32,19 @@ const SalesReport = () => {
                 </div>
 
             </div>
+            <div>
+                <DownloadTableExcel
+                    filename="users table"
+                    sheet="users"
+                    currentTableRef={tableRef.current}
+                >
+
+                    <button className="btn "> Dowonload excel </button>
+
+                </DownloadTableExcel>
+            </div>
             <div className="overflow-x-auto">
-                <table className="table">
+                <table ref={tableRef} className="table">
                     {/* head */}
                     <thead>
                         <tr>

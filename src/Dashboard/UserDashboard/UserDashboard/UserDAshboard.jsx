@@ -6,11 +6,14 @@ import axios from "axios";
 
 const UserDAshboard = () => {
   const { user } = useContext(AuthContext)
-  const { refetch, data: paymentHistoryData = [], isLoading } = useQuery({
+
+  const { data: paymentHistoryData = [], } = useQuery({
     queryKey: ['mePaymentH',],
     queryFn: async () => {
       if (user) {
-        const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/mePaymentH?email=${user?.email}`);
+        const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/mePaymentH?email=${user?.email}`, {
+          headers: { Authorization: localStorage.getItem('accessToken') }
+        });
         return res.data;
       }
     },

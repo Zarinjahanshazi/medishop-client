@@ -5,6 +5,7 @@ import { FaHouseMedical } from "react-icons/fa6";
 import { AuthContext } from '../Providers/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { Helmet } from 'react-helmet-async';
 
 const InvoicePage = () => {
     const { user } = useContext(AuthContext)
@@ -42,6 +43,9 @@ const InvoicePage = () => {
 
     return (
         <div>
+            <Helmet>
+        <title>Medi-Shop|Invoice</title>
+      </Helmet>
             <div ref={printRef}>
                 <div style={{ padding: '10px', background: '#f5f5f5' }} className="flex justify-between m-10">
                     <div>

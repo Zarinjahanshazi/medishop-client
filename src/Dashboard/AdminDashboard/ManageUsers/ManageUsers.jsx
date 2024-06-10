@@ -1,15 +1,33 @@
-const ManageUsers = () => {
-    const handleMakeAdmin =() =>{
-        console.log('make admin')
-    }
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
-    const handleMakeUser =() =>{
-        console.log('make user')
+const ManageUsers = () => {
+  const { refetch, data: userData = [] } = useQuery({
+    queryKey: ['users',],
+    queryFn: async () => {
+      const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/users`, {
+        headers: { Authorization: localStorage.getItem('accessToken') }
+      });
+      return res.data;
+    },
+
+  })
+  console.log(userData);
+
+
+  const handeRoleChange = async (data) => {
+    const updateData = {
+      role: data.role
     }
-    
-    const handleMakeSeller =() =>{
-        console.log('make seller')
+    const res = await axios.patch(`${import.meta.env.VITE_SERVER_URL}/users/${data.id}`, updateData, {
+      headers: { Authorization: localStorage.getItem('accessToken') }
+    })
+    console.log(res);
+    if (res) {
+      refetch()
     }
+  }
+
   return (
     <div>
       <div className="overflow-x-auto">
@@ -19,6 +37,7 @@ const ManageUsers = () => {
             <tr>
               <th>#</th>
               <th>Name</th>
+              <th>Status</th>
               <th>Make Admin</th>
               <th>Make user</th>
               <th>Make Seller</th>
@@ -26,25 +45,45 @@ const ManageUsers = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            <tr>
-              <th></th>
-              <th></th>
-              <td>
-                <button onClick={handleMakeAdmin} className="btn btn-outline btn-success ">
-                  Make Admin
-                </button>
-              </td>
-              <td>
-                <button onClick={handleMakeUser} className="btn btn-outline btn-warning">
-                  Make User
-                </button>
-              </td>
-              <td>
-              <button onClick={handleMakeSeller} className="btn btn-outline btn-warning">
-                 Make Seller
-                </button>
-              </td>
-            </tr>
+            {
+              userData?.map((item, index) => (
+                <tr key={index}>
+                  <th>{index + 1}</th>
+                  <th>{item.email}</th>
+                  <th>{item.role}</th>
+                  <td>
+                    {
+                      item.role !== 'admin' ? <button onClick={() => handeRoleChange({ id: item._id, role: 'admin' })} className={`btn btn-outline btn-success `}
+
+                      >
+                        Make Admin
+
+                      </button>
+                        :
+                        <button disabled className="btn btn-outline ">Make Admin</button>
+                    }
+                  </td>
+                  <td>
+                    {
+                      item.role !== 'user' ? <button onClick={() => handeRoleChange({ id: item._id, role: 'user' })} className="btn btn-outline btn-warning">
+                        Make User
+                      </button>
+                        :
+                        <button disabled className="btn btn-outline ">Make user</button>
+                    }
+                  </td>
+                  <td>
+                    {
+                      item.role !== 'seller' ? <button onClick={() => handeRoleChange({ id: item._id, role: 'seller' })} className="btn btn-outline btn-warning">
+                        Make Seller
+                      </button>
+                        :
+                        <button disabled className="btn btn-outline ">Make user</button>
+                    }
+                  </td>
+                </tr>
+              ))
+            }
           </tbody>
         </table>
       </div>

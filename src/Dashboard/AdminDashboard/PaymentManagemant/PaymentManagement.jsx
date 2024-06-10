@@ -1,13 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 
 const PaymentManagement = () => {
-  const { refetch, data: paymentHistoryData = [], isLoading } = useQuery({
+  const { refetch, data: paymentHistoryData = [], } = useQuery({
     queryKey: ['mePaymentH',],
     queryFn: async () => {
-      const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/allpayment`);
+      const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/allpayment`, {
+        headers: { Authorization: localStorage.getItem('accessToken') }
+      });
       return res.data;
 
     },
@@ -22,7 +23,9 @@ const PaymentManagement = () => {
   console.log(paymentHistoryData)
   const handleAcepetPayment = async (id) => {
     console.log(id);
-    const res = await axios.patch(`${import.meta.env.VITE_SERVER_URL}/changeStatusPayment/${id}`)
+    const res = await axios.patch(`${import.meta.env.VITE_SERVER_URL}/changeStatusPayment/${id}`, {}, {
+      headers: { Authorization: localStorage.getItem('accessToken') }
+    })
     if (res.data) {
       refetch()
     }

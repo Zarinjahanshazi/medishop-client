@@ -1,7 +1,7 @@
 import {
-    createBrowserRouter,
-   
-  } from "react-router-dom";
+  createBrowserRouter,
+
+} from "react-router-dom";
 import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
@@ -22,122 +22,102 @@ import ManageBannerAdvertise from "../Dashboard/AdminDashboard/ManageBannerAdver
 import ManageMedicines from "../Dashboard/SellerDashboard/ManageMedicines/ManageMedicines";
 import PaymentHistory from "../Dashboard/SellerDashboard/PaymentHistory/PaymentHistory";
 import AskForAdvertisement from "../Dashboard/SellerDashboard/AskForAdvertisement/AskForAdvertisement";
-// import UserHome from "../Dashboard/UserDashboard/UserHome/UserHome";
-import AdminHome from "../Dashboard/AdminDashboard/AdminHome/AdminHome";
-import SellerHome from "../Dashboard/SellerDashboard/SellerHome/SellerHome";
 import InvoicePage from "../Pages/InvoicePage/InvoicePage";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 // import Shop from "../Pages/Shop/Shop";
 
-  export const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Main></Main>,
-      children: [
-        {
-            path: "/",
-            element:<Home></Home>
-        },
-        {
-            path: "/login",
-            element:<Login></Login>
-        },{
-            path: "/signup",
-            element:<Signup></Signup>
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Main></Main>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>
+      },
+      {
+        path: "/login",
+        element: <Login></Login>
+      }, {
+        path: "/signup",
+        element: <Signup></Signup>
 
-        },
-        {
-            path:'/shop',
-            element:<Shop></Shop>
-        },
-        {
-            path:`/categoryData/:category`,
-            element:<CategoryData></CategoryData>
-        },
-        {
-          path:'/cart',
-          element:<CartPage></CartPage>
-        },
-        {
-          path:'/checkout',
-          element:<Checkoutpage></Checkoutpage>,
-        },
-        {
-          path:'/userUpdateProfile',
-          element:<UserUpdateProfile></UserUpdateProfile>
-        },
-        {
-          path:'/invoice',
-          element:<InvoicePage></InvoicePage>
-        },
-
-       
-        // {
-        //     path:'/shop/:category',
-        //     element:<Shop></Shop>,
-        //     loader:({params}) =>fetch(`medicine.json/${params.category}`)
-        //   },
-
-      ]
-    },
-    {
-      path: "dashboard",
-      element: <Dashboard></Dashboard>,
-      children: [
-        //user route
-        // {
-        //   path:'userHome',
-        //   element:<UserHome></UserHome>
-        // },
-        {
-          path:'paymentHistory',
-          element:<UserDAshboard></UserDAshboard>
-        },
-
-        //admin route
-        {
-          path:'adminHome',
-          element:<AdminHome></AdminHome>
-        },
-        {
-          path:'manageUsers',
-          element:<ManageUsers></ManageUsers>
-        },
-        {
-          path:'manageCategory',
-          element:<ManageCategory></ManageCategory>
-        },
-        {
-          path:'paymentManagement',
-          element:<PaymentManagement></PaymentManagement>
-        },
-        {
-          path:'salesReport',
-         element:<SalesReport></SalesReport>
-        },
-        {
-          path:'manageBannerAdvertise',
-          element:<ManageBannerAdvertise></ManageBannerAdvertise>
-        },
-        // seller route
-        {
-          path:'sellerHome',
-          element:<SellerHome></SellerHome>
-        },
-        {
-          path:'manageMedicines',
-          element:<ManageMedicines></ManageMedicines>
-        },
-        {
-          path:'sellerPaymentHistory',
-          element:<PaymentHistory></PaymentHistory>
-        },
-        {
-          path:'askForAdvertisement',
-          element:<AskForAdvertisement></AskForAdvertisement>
-          
-        },
+      },
+      {
+        path: '/shop',
+        element: <Shop></Shop>
+      },
+      {
+        path: `/categoryData/:category`,
+        element: <CategoryData></CategoryData>
+      },
+      {
+        path: '/cart',
+        element: <CartPage></CartPage>
+      },
+      {
+        path: '/checkout',
+        element: <Checkoutpage></Checkoutpage>,
+      },
+      {
+        path: '/userUpdateProfile',
+        element: <UserUpdateProfile></UserUpdateProfile>
+      },
+      {
+        path: '/invoice',
+        element: <InvoicePage></InvoicePage>
+      },
 
 
-      ]
-    }
-  ]);
+    ]
+  },
+  {
+    path: "dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      //user route
+      {
+        path: 'paymentHistory',
+        element: <PrivateRoute><UserDAshboard></UserDAshboard></PrivateRoute>
+      },
+
+      //admin route
+      {
+        path: 'manageUsers',
+        element: <PrivateRoute><ManageUsers></ManageUsers></PrivateRoute>
+      },
+      {
+        path: 'manageCategory',
+        element: <PrivateRoute><ManageCategory></ManageCategory></PrivateRoute>
+      },
+      {
+        path: 'paymentManagement',
+        element: <PrivateRoute><PaymentManagement></PaymentManagement></PrivateRoute>
+      },
+      {
+        path: 'salesReport',
+        element: <PrivateRoute><SalesReport></SalesReport></PrivateRoute>
+      },
+      {
+        path: 'manageBannerAdvertise',
+        element: <PrivateRoute><ManageBannerAdvertise></ManageBannerAdvertise></PrivateRoute>
+      },
+      // seller route
+      {
+        path: 'manageMedicines',
+        element: <PrivateRoute><ManageMedicines></ManageMedicines></PrivateRoute>
+      },
+      {
+        path: 'sellerPaymentHistory',
+        element: <PrivateRoute><PaymentHistory></PaymentHistory></PrivateRoute>
+      },
+      {
+        path: 'askForAdvertisement',
+        element: <PrivateRoute><AskForAdvertisement></AskForAdvertisement></PrivateRoute>
+
+      },
+
+
+    ]
+  }
+]);

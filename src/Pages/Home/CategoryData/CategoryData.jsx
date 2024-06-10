@@ -2,23 +2,37 @@ import { useParams } from "react-router-dom";
 import useCategory from "../../../hooks/useCategory";
 import { GrCheckboxSelected } from "react-icons/gr";
 import { FaEye } from "react-icons/fa6";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
+
 
 const CategoryData = () => {
   const { category } = useParams();
-  // const stUpparcase = category.split('').slice(0,1).join('').toUpperCase()+ category.split('').slice(1,-1).join('')
+  const { setAddMedicine, addMedicine } = useContext(AuthContext)
   const [categories] = useCategory(category);
-  console.log("dynamic categories", categories);
-
   const [currentItem, setCurrentItem] = useState(null);
-
+  console.log(categories);
   const handleOpenModal = (item) => {
     setCurrentItem(item);
     document.getElementById('my_modal_1').showModal();
   };
+  const handleAddToCart = (item) => {
+    console.log(item);
+    const isExist = addMedicine.find(i => i._id === item._id);
+    if (!isExist) {
+      item.quanty = 1;
+      item.totalPrice = parseFloat(item.price_per_unit * item.quanty).toFixed(2)
+      setAddMedicine([...addMedicine, item]);
+    } else {
+      isExist.quanty += 1;
+      item.totalPrice = parseFloat(item.price_per_unit * isExist.quanty).toFixed(2)
+      setAddMedicine([...addMedicine]);
+    }
+  }
 
   return (
     <div>
+      
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}
@@ -31,12 +45,12 @@ const CategoryData = () => {
             </tr>
           </thead>
           <tbody>
-            {categories.map((item, index) => (
+            {categories?.map((item, index) => (
               <tr key={item._id}>
                 <th>{index + 1}</th>
                 <td>{item.medicine_name}</td>
-                <td>
-                    
+                <td onClick={() => handleAddToCart(item)}>
+
                   <button className="btn bg-orange-500 btn-lg">
                     <h2 className="text-white text-2xl">
                       <GrCheckboxSelected />
