@@ -9,7 +9,6 @@ import "swiper/css/pagination";
 import { Grid, Pagination } from "swiper/modules";
 import SingleDiscount from "./SingleDiscount";
 
-
 const DiscountSection = () => {
   const axiosPublic = useAxiosPublic();
 
@@ -18,36 +17,40 @@ const DiscountSection = () => {
     queryFn: async () => {
       const res = await axiosPublic.get('/discounts');
       return res.data;
-
     }
-  })
-  console.log('discounts medicine', discount)
+  });
+
+  console.log('discounts medicine', discount);
+
   return (
     <div className="mt-10">
-      <div>
-        <h2 className="text-3xl">{discount.length}</h2>
-        {/* <div className="">
-            {
-                query.slice(0, 3).map(item => <SingleQuery item={item} key={item._id}></SingleQuery> )
-            }
-            </div> */}
-
+      <div className="">
         <Swiper
-          slidesPerView={2}
-          grid={{
-            columns: 4,
-          }}
           spaceBetween={30}
-          pagination={{
-            clickable: true,
-          }}
+          pagination={{ clickable: true }}
           modules={[Grid, Pagination]}
           className="mySwiper"
+          breakpoints={{
+            320: {
+              slidesPerView: 1,
+              grid: { rows: 1 },
+            },
+            640: {
+              slidesPerView: 1,
+              grid: { rows: 1 },
+            },
+            768: {
+              slidesPerView: 2,
+              grid: { rows: 1 },
+            },
+            1024: {
+              slidesPerView: 2,
+              grid: { rows: 1 },
+            },
+          }}
         >
           {discount.map((item) => (
             <SwiperSlide key={item._id}>
-              {/* <ReviewCard review={review} /> */}
-              {/* <SingleQuery item={item}></SingleQuery> */}
               <SingleDiscount item={item}></SingleDiscount>
             </SwiperSlide>
           ))}

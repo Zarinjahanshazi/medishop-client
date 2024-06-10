@@ -49,11 +49,13 @@ const PaymentHistory = () => {
                                         {
                                             item?.paymentData?.map((item, index) => (
                                                 <div key={index}>
-                                                    <span>{item?.paymentStatus}</span>
+                                                    <span>{item?.email}{` :   `}{item?.paymentStatus}</span>
                                                 </div>
                                             ))
                                         }
                                     </td>
+
+
                                 </tr>
                             ))
                         }

@@ -33,9 +33,9 @@ const NavBar = () => {
           </button>
         </Link>
       </li>
-      <li className="font-semibold">
+      {/* <li className="font-semibold">
         <NavLink to="/about">About</NavLink>
-      </li>
+      </li> */}
 
     </>
   );

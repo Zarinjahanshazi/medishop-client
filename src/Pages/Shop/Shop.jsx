@@ -60,7 +60,7 @@ const Shop = () => {
   };
 
   return (
-    <div>
+    <div className="p-4">
       <Helmet>
         <title>Medi-Shop|Shop</title>
       </Helmet>
@@ -68,7 +68,7 @@ const Shop = () => {
         <h2 className="text-3xl">Shop</h2>
       </div>
 
-      <div className="flex justify-between my-4">
+      <div className="flex flex-col sm:flex-row justify-between my-4">
         <input
           type="text"
           placeholder="Search..."

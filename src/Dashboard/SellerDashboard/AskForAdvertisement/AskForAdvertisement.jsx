@@ -12,18 +12,20 @@ const AskForAdvertisement = () => {
   const { user } = useContext(AuthContext)
   const { data: applyData = [], refetch } = useQuery({
     queryKey: ['getAd'],
+    enabled: !!user?.email,
     queryFn: async () => {
-      if (user) {
+       
         const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/getAd?email=${user?.email}`, {
           headers: { Authorization: localStorage.getItem('accessToken') }
         });
         return res.data;
-      }
+     
 
     },
   })
   const { data: sellerMedicines = [], } = useQuery({
     queryKey: ['categoriesOfSeller', user?.email],
+    enabled: !!user?.email,
     queryFn: async () => {
       const res = await axios.get(`${import.meta.env.VITE_SERVER_URL}/categoriesOfSeller?email=${user?.email}`, {
         headers: { Authorization: localStorage.getItem('accessToken') }
@@ -32,7 +34,7 @@ const AskForAdvertisement = () => {
     },
 
   })
-  console.log(category);
+  console.log(sellerMedicines);
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const onSubmit = async (data) => {
     if (user.email) {

@@ -20,7 +20,7 @@ const SellerHome = () => {
     })
 
     return (
-        <div className="stats shadow mt-8">
+        <div className="stats shadow mt-8 grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 
             <div className="stat place-items-center">
                 <div className="stat-title">Pending Tk</div>
