@@ -24,6 +24,8 @@ import PaymentHistory from "../Dashboard/SellerDashboard/PaymentHistory/PaymentH
 import AskForAdvertisement from "../Dashboard/SellerDashboard/AskForAdvertisement/AskForAdvertisement";
 import InvoicePage from "../Pages/InvoicePage/InvoicePage";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import AdminHome from "../Dashboard/AdminDashboard/AdminHome/AdminHome";
+import SellerHome from "../Dashboard/SellerDashboard/SellerHome/SellerHome";
 // import Shop from "../Pages/Shop/Shop";
 
 export const router = createBrowserRouter([
@@ -57,7 +59,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/checkout',
-        element: <Checkoutpage></Checkoutpage>,
+        element:<PrivateRoute><Checkoutpage></Checkoutpage></PrivateRoute>
       },
       {
         path: '/userUpdateProfile',
@@ -102,6 +104,10 @@ export const router = createBrowserRouter([
         path: 'manageBannerAdvertise',
         element: <PrivateRoute><ManageBannerAdvertise></ManageBannerAdvertise></PrivateRoute>
       },
+      {
+        path: 'admin/home',
+        element: <PrivateRoute><AdminHome></AdminHome></PrivateRoute>
+      },
       // seller route
       {
         path: 'manageMedicines',
@@ -115,6 +121,10 @@ export const router = createBrowserRouter([
         path: 'askForAdvertisement',
         element: <PrivateRoute><AskForAdvertisement></AskForAdvertisement></PrivateRoute>
 
+      },
+      {
+        path: 'seller/home',
+        element: <PrivateRoute><SellerHome /></PrivateRoute>
       },
 
 

@@ -13,7 +13,6 @@ import { AuthContext } from "../../Pages/Providers/AuthProvider";
 const Dashboard = () => {
     const { user } = useContext(AuthContext)
     const [meData] = useGetMe(user?.email)
-    console.log(meData);
     return (
         <div>
 
@@ -72,6 +71,7 @@ const Dashboard = () => {
                                 <>
                                     <h2 className="md:text-xl text-xs font-bold text-center">Admin</h2>
 
+                                    <li><NavLink to='/dashboard/admin/home'><FaUser></FaUser> Admin Revenue</NavLink></li>
                                     <li><NavLink to='/dashboard/manageUsers'><FaUser></FaUser> Manage Users</NavLink></li>
                                     <li><NavLink to='/dashboard/manageCategory'><BiCategory />Manage Category</NavLink></li>
                                     <li><NavLink to='/dashboard/paymentManagement'><MdOutlinePayment />Payment Management</NavLink></li>
@@ -81,21 +81,13 @@ const Dashboard = () => {
                             )
                         }
 
-                        {/* {logged?.role === 'deliverymen' && (
-                        <>
-                            <h2 className="md:text-xl text-xs font-bold text-center">Delivery Man</h2>
-                            <div className="divider"></div>
-                            <li><NavLink to='/dashboard/mydelivery'><FaToolbox /> My Delivery</NavLink></li>
-                            <li><NavLink to='/dashboard/reviews'><RiFeedbackFill /> Reviews</NavLink></li>
-                        </>
-                    )} */}
-
 
                         {
                             meData?.role === "seller" &&
                             <>
                                 <h2 className="md:text-xl text-xs font-bold text-center">Seller</h2>
                                 <div className="divider"></div>
+                                <li><NavLink to='/dashboard/seller/home'><AiFillMedicineBox />Seller Revenue</NavLink></li>
                                 <li><NavLink to='/dashboard/manageMedicines'><AiFillMedicineBox />Manage Medicine</NavLink></li>
                                 <li><NavLink to='/dashboard/sellerPaymentHistory'><MdOutlinePayment />Seller Payment History</NavLink></li>
                                 <li><NavLink to='/dashboard/askForAdvertisement'><RiAdvertisementFill />Ask For Advertisement</NavLink></li>

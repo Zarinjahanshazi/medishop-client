@@ -30,7 +30,7 @@ const Banner = () => {
 
         }
     })
-    const imgArrays = bannarData.length > 1 ? bannarData : imgArray
+    const imgArrays = [...imgArray, ...bannarData]
     return (
         <div>
             <Carousel>

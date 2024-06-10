@@ -1,15 +1,20 @@
 import { useContext } from "react";
 import { FaTrashAlt } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
-import { Helmet } from "react-helmet-async";
 
 const CartPage = () => {
+  let location = useLocation();
+  const navigate = useNavigate()
+  const { user } = useContext(AuthContext)
   const { addMedicine, setAddMedicine } = useContext(AuthContext)
   const handleDelete = (id) => {
     const find = addMedicine.filter(i => i._id != id)
     setAddMedicine([...find])
   };
+  const handleLogin = () => {
+    navigate('/login', { state: { from: location }, replace: true });
+  }
 
   const handladeQuantityChange = ({ quanty, id }) => {
 
@@ -20,9 +25,6 @@ const CartPage = () => {
 
   return (
     <div>
-      <Helmet>
-        <title>Medi-Shop|Cart</title>
-      </Helmet>
       <div className="flex justify-around mt-8">
         <div>
           <button onClick={() => setAddMedicine([])} className="btn btn-primary">Clear All</button>
@@ -30,7 +32,10 @@ const CartPage = () => {
         <div>
           {/* <Link to='/dashboard/payment'><button className="btn btn-primary">Pay</button></Link>
          <button disabled className="btn btn-primary">Pay</button> */}
-          <Link to='/checkout'><button className="btn btn-primary">checkout </button></Link>
+          {
+            user ? <Link to='/checkout'><button className="btn btn-primary">checkout </button></Link>
+              : <button onClick={handleLogin} className="btn btn-secondary">login</button>
+          }
         </div>
 
       </div>

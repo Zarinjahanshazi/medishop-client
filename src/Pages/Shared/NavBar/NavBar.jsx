@@ -3,15 +3,17 @@ import { FaHouseMedical } from "react-icons/fa6";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { FaShoppingCart } from "react-icons/fa";
+import useGetMe from "../../../hooks/geMe";
 // import useCart from "../../../hooks/useCart";
 
 const NavBar = () => {
   const { user, logOut, addMedicine } = useContext(AuthContext);
-  console.log(user);
+  const [meData] = useGetMe(user?.email)
   // const [cart] = useCart();
+  console.log(user);
 
   const handleLogout = () => {
-    logOut();
+    logOut()
     localStorage.removeItem("accessToken")
   }
   const links = (
@@ -31,9 +33,9 @@ const NavBar = () => {
           </button>
         </Link>
       </li>
-      {/* <li className="font-semibold">
+      <li className="font-semibold">
         <NavLink to="/about">About</NavLink>
-      </li> */}
+      </li>
 
     </>
   );
@@ -100,7 +102,7 @@ const NavBar = () => {
                 <div className="dropdown dropdown-end">
                   <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                     <div className="w-10 rounded-full">
-                      <img className="rounded-full flex justify-center items-center mx-auto" src={user.photoURL} alt="user profile" />
+                      <img className="rounded-full flex justify-center items-center mx-auto" src={meData ? meData.photo : user.photoURL} alt="user profile" />
                     </div>
                   </label>
                   <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
@@ -109,7 +111,7 @@ const NavBar = () => {
                     <Link to='/dashboard'><li><h2 className='text-green-500 font-semibold'>Dashboard</h2></li></Link>
                     <p className='ml-3'>
                       <div className="justify-between">
-                        <h2 className='text-green-500 font-semibold'>{
+                        <h2 className='text-green-500 font-semibold'>{meData.name ? meData.name :
                           user.displayName}</h2>
                       </div>
                     </p>
