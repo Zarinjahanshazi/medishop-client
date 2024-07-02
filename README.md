@@ -1,8 +1,52 @@
 
 # Medi-Shop
 
+## Overview
+- MediShop is a comprehensive online pharmacy with user-friendly features robust user authentication, and dedicated dashboards for users, sellers, and admins.
+
+## Concept
+- MediShop provides a seamless online pharmacy experience, offering intuitive navigation. It supports users with personalized dashboards, ensuring efficient management of medicines, orders, and payments, while facilitating community engagement and business growth.
+
+## Solve Problem
+- admin can see his/her own dashboard
+- seller can see his/her own dashboard
+- user can see his/her own dashboard
+
+# Features
+- Major features
+- Admin Dashboard:
+Manage users, categories, payments, sales reports, banner advertisements.
+- Seller Dashboard:
+Manage medicines, view payment history, request advertisements.
+- User Dashboard:
+Displays user’s payment history with transaction ID and status.
+
+- Best Features
+- Shop Page:
+Displays all medicines.
+Select and eye buttons for adding to cart and viewing details.
+- Cart Page:
+Displays selected medicines.
+Options to adjust quantity, remove items, clear cart.
+Checkout button.
+- Checkout Page:
+Stripe payment for total purchase price.
 
 
+## Technology used
+- Reactjs
+- nodejs
+- mongoDB
+- express
+
+
+## How to run locally
+- step1:copy the code from the "code" section in the repository
+- step2:open the command prompt in your local computer
+-stpe3:perform git clone opraton (don't forget to paste the code)
+- stpe4:perform "npm i"
+-step5:open the code in VS(it is a optional step)
+-perform "npm run dev"
 
 ## Live URL
 - https://medishop-client.web.app
@@ -10,52 +54,4 @@
 - priti
 - priti@gmail.com
 - 1234Aa@
-
-
-# Features
-- Navbar:
-Logo and website name.
-Home, Shop, Cart icon, languages dropdown.
-Join Us button (when not logged in).
-Profile picture with dropdown for Update Profile, Dashboard, Logout (when logged in).
-- Slider Section:
-Displays product slides added by the admin.
-- Category Card Section:
-Displays at least 6 category cards.
-Shows category name, basic image, and number of medicines.
-Clicking a card navigates to a category-specific medicine page.
-- Discount Products Section:
-Draggable multiple card slider for discounted products.
-- Additional Sections:
-Two extra sections related to the website.
-- User Registration and Authentication:
-Sign Up Page: fields for username, email, photo upload, password, role selection, sign-up button.
-Login Page: fields for email and password, login button.
-Social Login: Google or GitHub, default role "user."
-- Shop Page:
-Displays all medicines in tabular format.
-Select and eye buttons for adding to cart and viewing details.
-- Category Details Medicine Page:
-Displays medicines of a specific category in tabular format.
-Select and eye buttons for adding to cart and viewing details.
-- Cart Page:
-Displays selected medicines with basic information.
-Options to adjust quantity, remove items, clear cart.
-Checkout button.
-- Checkout Page:
-Stripe payment for total purchase price.
-Redirects to invoice page after payment.
-- Invoice Page:
-Displays invoice with website logo, user info, and purchase details.
-Print/download button.
-- Admin Dashboard:
-Overview of total sales revenue (paid and pending).
-Manage users, categories, payments, sales reports, banner advertisements.
-- Seller Dashboard:
-Overview of total sales revenue.
-Manage medicines, view payment history, request advertisements.
-- User Dashboard:
-Displays user’s payment history with transaction ID and status.
-
-
 
